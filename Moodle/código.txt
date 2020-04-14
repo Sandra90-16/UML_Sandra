@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor Profesor
+actor Alumno
+actor Moodle
+
+
+rectangle "Subsistema de Profesor" {
+  Profesor -- (gestiona los grupos)
+  Profesor -- (matricula a los alumnos)
+  Profesor -- (crea nuevos cursos)
+  Profesor -- (gestiona los temas, tareas)
+  Profesor -- (gestiona las calificaciones)
+}
+
+rectangle "Subsistema de Alumno" {
+  Alumno -- (se matricula en cada asigantura)
+  Alumno -- (visualiza el contenido de cada tema)
+  Alumno -- (entrega las tareas en la fecha prevista)
+  Alumno -- (entrega los examenes de cada tema)
+  Alumno -- (visualiza las calificaciones)
+
+(Alumno) <-- (Profesor) : include
+(Moodle) <-- (Profesor) : include
+
+}
+
+(gestiona los temas, tareas) <--  (visualiza el contenido de cada tema): include
+(gestiona los temas, tareas) <--  (entrega las tareas en la fecha prevista): include
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+skinparam packagestyle rectangle
+actor Socios
+actor SocioBeneficios
+actor Cliente
+actor Tienda
+
+Socios <|-- SocioBeneficios
+SocioBeneficios <-- Tienda
+
+rectangle "Subsistema de socios" {
+(Retirar su parte) as retirar
+(Distribuir entre sus clientes) as distribuir
+(Vender en su propia tienda) as vendertienda
+(Vender más caro que en la fábrica) as vender
+(Pueden hacer lotes de productos) as lotes
+Socios -- retirar
+Socios -- distribuir
+Socios -- vendertienda
+Socios -- vender
+Socios -- lotes
+}
+
+rectangle "Subsistema de SocioBeneficios" {
+SocioBeneficios -- (reparto beneficios)
+SocioBeneficios -- (vender su parte del producto a otros socios)
+
+}
+
+rectangle "Subsistema de Tienda" {
+Tienda -- (aplicación web)
+
+Tienda -- (produce beneficios)
+}
+
+rectangle "Subsistema de Cliente" {
+Cliente-- (consultar catálogo)
+Cliente -- (consultar precios)
+Cliente -- (hacer pedidos online)
+}
+
+(Tienda) <-- (Cliente) : include
+(aplicación web) <-- (Tienda) : include
+@enduml
